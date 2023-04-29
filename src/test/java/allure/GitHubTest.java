@@ -1,5 +1,6 @@
 package allure;
 
+import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -12,6 +13,9 @@ public class GitHubTest {
 
     @Test
     void searchForIssue() {
+        Configuration.remote = "http://localhost:4444/wd/hub";
+//        SelenideLogger.addListener("allure", new AllureSelenide());
+
         open("https://github.com");
         $(".header-search-input").setValue("allure-examples").submit();
         $(byLinkText("allure-examples/allure-examples")).click();
